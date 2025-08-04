@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: collab-task-api
+    env: node
+    buildCommand: npm ci && npx nx build board-api
+    startCommand: node dist/apps/board-api/main.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3333 

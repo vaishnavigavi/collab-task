@@ -20,7 +20,8 @@
     "format:check": "nx format:check",
     "deploy:api": "cd apps/board-api && fly deploy",
     "deploy:ui": "vercel --prod",
-    "deploy": "npm run build && npm run deploy:api && npm run deploy:ui"
+    "deploy": "npm run build && npm run deploy:api && npm run deploy:ui",
+    "start": "node dist/apps/board-api/main.js"
   },
   "private": true,
   "dependencies": {
