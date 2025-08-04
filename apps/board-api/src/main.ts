@@ -17,6 +17,9 @@ async function bootstrap() {
       process.env['FRONTEND_URL'] || 'http://localhost:4200',
       'http://localhost:4201',
       'http://localhost:4200',
+      'https://board-ui-sage.vercel.app',
+      'https://board-ui-vaishnavis-projects-6721f8c1.vercel.app',
+      'https://board-ui-vaishnavigavi-vaishnavis-projects-6721f8c1.vercel.app',
       'https://collab-task.vercel.app',
       'https://collab-task-git-main.vercel.app',
       'https://collab-task-git-develop.vercel.app'
