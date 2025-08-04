@@ -1,0 +1,13 @@
+<div class="markdown-editor">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Description</mat-label>
+    <textarea 
+      matInput 
+      [value]="content"
+      [placeholder]="placeholder"
+      rows="6"
+      (input)="onContentChange($event.target.value)"
+    ></textarea>
+    <mat-hint>Supports Markdown formatting</mat-hint>
+  </mat-form-field>
+</div> 

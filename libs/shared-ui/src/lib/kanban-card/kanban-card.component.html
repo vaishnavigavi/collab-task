@@ -1,0 +1,76 @@
+<div 
+  class="kanban-card"
+  cdkDrag
+  [cdkDragData]="task"
+  (cdkDragDropped)="onDrop($event)"
+  (click)="onCardClick()"
+  [class.dragging]="isDragging"
+  [class.dark]="isDarkMode"
+  role="button"
+  tabindex="0"
+  [attr.aria-label]="'Task: ' + task.title"
+>
+  <mat-card class="card-content">
+    <mat-card-header class="card-header">
+      <mat-card-title class="card-title">
+        {{ task.title }}
+      </mat-card-title>
+      <div class="card-actions">
+        <mat-icon 
+          [class]="getPriorityColor(task.priority)"
+          class="priority-icon"
+          [matTooltip]="task.priority + ' priority'"
+        >
+          {{ getPriorityIcon(task.priority) }}
+        </mat-icon>
+        <span class="comment-count" *ngIf="task.comments.length > 0">
+          <mat-icon class="comment-icon">chat_bubble_outline</mat-icon>
+          {{ task.comments.length }}
+        </span>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content class="card-body">
+      <p class="card-description" *ngIf="task.description">
+        {{ task.description | slice:0:100 }}{{ task.description.length > 100 ? '...' : '' }}
+      </p>
+      
+      <div class="card-tags" *ngIf="task.tags.length > 0">
+        <mat-chip-set>
+          <mat-chip 
+            *ngFor="let tag of task.tags.slice(0, 3)" 
+            class="tag-chip"
+            [class.dark]="isDarkMode"
+          >
+            {{ tag }}
+          </mat-chip>
+          <mat-chip *ngIf="task.tags.length > 3" class="more-tags">
+            +{{ task.tags.length - 3 }}
+          </mat-chip>
+        </mat-chip-set>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-meta">
+          <app-user-avatar 
+            [user]="task.createdBy" 
+            class="creator-avatar"
+          ></app-user-avatar>
+          <span class="created-date">
+            {{ task.createdAt | date:'MMM d' }}
+          </span>
+        </div>
+        
+        <div class="assigned-to" *ngIf="task.assignedTo">
+          <app-user-avatar 
+            [user]="task.assignedTo" 
+            class="assigned-avatar"
+            [matTooltip]="'Assigned to ' + task.assignedTo.displayName"
+          ></app-user-avatar>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="drag-placeholder" *cdkDragPlaceholder></div>
+</div> 

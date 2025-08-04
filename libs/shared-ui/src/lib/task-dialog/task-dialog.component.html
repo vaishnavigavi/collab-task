@@ -1,0 +1,71 @@
+<div class="task-dialog">
+  <h2 mat-dialog-title>
+    {{ data.mode === 'create' ? 'Create New Task' : 'Edit Task' }}
+  </h2>
+  
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content class="dialog-content">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Task Title</mat-label>
+          <input matInput formControlName="title" placeholder="Enter task title">
+          <mat-error *ngIf="taskForm.get('title')?.hasError('required')">
+            Title is required
+          </mat-error>
+          <mat-error *ngIf="taskForm.get('title')?.hasError('minlength')">
+            Title must be at least 3 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <app-markdown-editor
+          [content]="taskForm.get('description')?.value"
+          (contentChange)="taskForm.patchValue({ description: $event })"
+        ></app-markdown-editor>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Column</mat-label>
+          <mat-select formControlName="column">
+            <mat-option *ngFor="let column of columns" [value]="column">
+              {{ column | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority">
+            <mat-option *ngFor="let priority of priorities" [value]="priority">
+              <app-priority-badge [priority]="priority"></app-priority-badge>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Tags</mat-label>
+          <input matInput formControlName="tags" placeholder="Enter tags separated by commas">
+          <mat-hint>Separate tags with commas</mat-hint>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+      <button mat-button type="button" (click)="onCancel()">
+        Cancel
+      </button>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit"
+        [disabled]="taskForm.invalid"
+      >
+        {{ data.mode === 'create' ? 'Create' : 'Save' }}
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div> 

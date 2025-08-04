@@ -1,0 +1,18 @@
+<div class="skeleton-container">
+  <div 
+    *ngFor="let item of skeletonItems"
+    class="skeleton-item"
+    [style.height]="height"
+    [style.width]="width"
+  >
+    <div class="skeleton-content">
+      <div class="skeleton-title"></div>
+      <div class="skeleton-text"></div>
+      <div class="skeleton-text short"></div>
+      <div class="skeleton-footer">
+        <div class="skeleton-avatar"></div>
+        <div class="skeleton-date"></div>
+      </div>
+    </div>
+  </div>
+</div> 

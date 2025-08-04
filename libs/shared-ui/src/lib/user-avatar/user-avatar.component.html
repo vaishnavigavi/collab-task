@@ -1,0 +1,16 @@
+<div class="user-avatar" [class]="getSizeClass()">
+  <img 
+    *ngIf="user.photoURL" 
+    [src]="user.photoURL" 
+    [alt]="user.displayName"
+    class="avatar-image"
+  />
+  <div 
+    *ngIf="!user.photoURL" 
+    class="avatar-fallback"
+    [style.background-color]="getAvatarColor()"
+  >
+    {{ getInitials() }}
+  </div>
+  <span *ngIf="showName" class="user-name">{{ user.displayName }}</span>
+</div> 

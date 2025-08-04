@@ -1,0 +1,99 @@
+@use '@angular/material' as mat;
+
+// Include the common styles for Angular Material
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+$primary-palette: mat.define-palette(mat.$indigo-palette, 600);
+$accent-palette: mat.define-palette(mat.$orange-palette, 500);
+$warn-palette: mat.define-palette(mat.$red-palette, 500);
+
+// Create the theme object
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// Apply the theme
+@include mat.all-component-themes($theme);
+
+// Dark theme
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+.dark {
+  @include mat.all-component-colors($dark-theme);
+}
+
+// Custom component styles
+.mat-mdc-raised-button.mat-primary {
+  background-color: #4f46e5;
+  color: white;
+  
+  &:hover {
+    background-color: #4338ca;
+  }
+}
+
+.mat-mdc-fab.mat-primary {
+  background-color: #4f46e5;
+  color: white;
+  
+  &:hover {
+    background-color: #4338ca;
+  }
+}
+
+.mat-mdc-icon-button {
+  color: #6b7280;
+  
+  &:hover {
+    color: #4f46e5;
+    background-color: rgba(79, 70, 229, 0.1);
+  }
+  
+  .dark & {
+    color: #9ca3af;
+    
+    &:hover {
+      color: #a78bfa;
+      background-color: rgba(167, 139, 250, 0.1);
+    }
+  }
+}
+
+.mat-mdc-form-field {
+  .dark & {
+    --mdc-filled-text-field-container-color: rgba(255, 255, 255, 0.05);
+    --mdc-filled-text-field-label-text-color: #9ca3af;
+    --mdc-filled-text-field-input-text-color: #f9fafb;
+    --mdc-outlined-text-field-outline-color: rgba(255, 255, 255, 0.2);
+    --mdc-outlined-text-field-label-text-color: #9ca3af;
+    --mdc-outlined-text-field-input-text-color: #f9fafb;
+  }
+}
+
+.mat-mdc-card {
+  .dark & {
+    --mdc-elevated-card-container-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.mat-mdc-chip {
+  .dark & {
+    --mdc-chip-elevated-container-color: rgba(255, 255, 255, 0.1);
+    --mdc-chip-label-text-color: #f9fafb;
+  }
+} 

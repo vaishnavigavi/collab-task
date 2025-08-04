@@ -1,0 +1,76 @@
+.user-avatar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar-image,
+.avatar-fallback {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  .dark & {
+    border-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+  
+  .dark & {
+    color: #9ca3af;
+  }
+}
+
+// Size variants
+.avatar-small {
+  .avatar-image,
+  .avatar-fallback {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.625rem;
+  }
+  
+  .user-name {
+    font-size: 0.75rem;
+  }
+}
+
+.avatar-medium {
+  .avatar-image,
+  .avatar-fallback {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+  
+  .user-name {
+    font-size: 0.875rem;
+  }
+}
+
+.avatar-large {
+  .avatar-image,
+  .avatar-fallback {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .user-name {
+    font-size: 1rem;
+  }
+} 

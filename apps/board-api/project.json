@@ -1,0 +1,52 @@
+{
+  "name": "board-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/board-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/board-api",
+        "main": "apps/board-api/src/main.ts",
+        "tsConfig": "apps/board-api/tsconfig.app.json",
+        "assets": ["apps/board-api/src/assets"],
+        "webpackConfig": "apps/board-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "board-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "board-api:build:development"
+        },
+        "production": {
+          "buildTarget": "board-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/board-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

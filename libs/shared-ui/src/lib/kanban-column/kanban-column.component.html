@@ -1,0 +1,44 @@
+<div class="kanban-column" [class]="getColumnColor(column)">
+  <div class="column-header">
+    <div class="column-title">
+      <mat-icon class="column-icon">{{ getColumnIcon(column) }}</mat-icon>
+      <h3 class="title-text">{{ title }}</h3>
+      <span class="task-count">{{ tasks.length }}</span>
+    </div>
+    <button 
+      mat-icon-button 
+      class="add-task-btn"
+      (click)="onAddTask()"
+      [attr.aria-label]="'Add task to ' + title"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div 
+    class="column-content"
+    cdkDropList
+    [cdkDropListData]="tasks"
+    [cdkDropListConnectedTo]="['todo-list', 'in-progress-list', 'done-list']"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    <app-kanban-card
+      *ngFor="let task of tasks; trackBy: trackByTaskId"
+      [task]="task"
+      (cardClick)="onCardClick($event)"
+      (cardDrop)="onDrop($event)"
+    ></app-kanban-card>
+
+    <div class="empty-state" *ngIf="tasks.length === 0 && !isLoading">
+      <app-empty-state
+        [title]="'No tasks yet'"
+        [description]="'Add a task to get started'"
+        [icon]="getColumnIcon(column)"
+      ></app-empty-state>
+    </div>
+
+    <div class="loading-state" *ngIf="isLoading">
+      <app-loading-skeleton [count]="3"></app-loading-skeleton>
+    </div>
+  </div>
+</div> 

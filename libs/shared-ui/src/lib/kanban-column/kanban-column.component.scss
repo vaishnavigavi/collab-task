@@ -1,0 +1,218 @@
+.kanban-column {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  border-radius: 1rem;
+  border: 2px solid;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1rem 1rem 0 0;
+  
+  .dark & {
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.column-icon {
+  color: #4f46e5;
+  font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.title-text {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  
+  .dark & {
+    color: #f9fafb;
+  }
+}
+
+.task-count {
+  background: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.75rem;
+  min-width: 1.5rem;
+  text-align: center;
+  
+  .dark & {
+    background: rgba(79, 70, 229, 0.2);
+  }
+}
+
+.add-task-btn {
+  color: #6b7280;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: #4f46e5;
+    background: rgba(79, 70, 229, 0.1);
+  }
+  
+  .dark & {
+    color: #9ca3af;
+    
+    &:hover {
+      color: #a78bfa;
+      background: rgba(167, 139, 250, 0.1);
+    }
+  }
+}
+
+.column-content {
+  flex: 1;
+  padding: 1rem;
+  min-height: 400px;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(79, 70, 229, 0.3);
+    border-radius: 3px;
+    
+    &:hover {
+      background: rgba(79, 70, 229, 0.5);
+    }
+  }
+  
+  .dark & {
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(167, 139, 250, 0.3);
+      
+      &:hover {
+        background: rgba(167, 139, 250, 0.5);
+      }
+    }
+  }
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #9ca3af;
+  
+  .dark & {
+    color: #6b7280;
+  }
+}
+
+.loading-state {
+  padding: 1rem 0;
+}
+
+// Column-specific colors
+.border-blue-200 {
+  border-color: #bfdbfe;
+  
+  .dark & {
+    border-color: #1e40af;
+  }
+}
+
+.bg-blue-50 {
+  background: rgba(239, 246, 255, 0.5);
+  
+  .dark & {
+    background: rgba(30, 64, 175, 0.1);
+  }
+}
+
+.border-orange-200 {
+  border-color: #fed7aa;
+  
+  .dark & {
+    border-color: #ea580c;
+  }
+}
+
+.bg-orange-50 {
+  background: rgba(255, 247, 237, 0.5);
+  
+  .dark & {
+    background: rgba(234, 88, 12, 0.1);
+  }
+}
+
+.border-green-200 {
+  border-color: #bbf7d0;
+  
+  .dark & {
+    border-color: #16a34a;
+  }
+}
+
+.bg-green-50 {
+  background: rgba(240, 253, 244, 0.5);
+  
+  .dark & {
+    background: rgba(22, 163, 74, 0.1);
+  }
+}
+
+// Responsive design
+@media (max-width: 640px) {
+  .kanban-column {
+    min-height: 400px;
+    border-radius: 0.75rem;
+  }
+  
+  .column-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .column-content {
+    padding: 0.75rem;
+    min-height: 300px;
+  }
+  
+  .title-text {
+    font-size: 1rem;
+  }
+  
+  .column-icon {
+    font-size: 1.125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+} 

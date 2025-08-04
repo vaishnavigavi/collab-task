@@ -1,0 +1,88 @@
+<div class="board-container">
+  <header class="board-header">
+    <div class="header-content">
+      <div class="header-left">
+        <h1 class="board-title">Collab Task Board</h1>
+        <p class="board-subtitle">Real-time collaboration made simple</p>
+      </div>
+      
+      <div class="header-right">
+        <button mat-icon-button (click)="onThemeChange('dark')">
+          <mat-icon>dark_mode</mat-icon>
+        </button>
+        <div class="user-info" *ngIf="currentUser$ | async as user">
+          <span>{{ user.displayName }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="board-main">
+    <!-- Loading state -->
+    <div *ngIf="taskService.getCurrentTasks().length === 0" class="loading-container">
+      <div class="loading-spinner">
+        <mat-icon>sync</mat-icon>
+        <p>Loading tasks...</p>
+      </div>
+    </div>
+
+    <!-- Board content -->
+    <div *ngIf="taskService.getCurrentTasks().length > 0" class="board-grid">
+      <div 
+        *ngFor="let column of columns; trackBy: trackByColumn"
+        class="board-column"
+        [id]="column"
+        cdkDropList
+        [cdkDropListData]="getTasksForColumn(column)"
+        (cdkDropListDropped)="onTaskDrop($event)"
+      >
+        <div class="column-header">
+          <h3>{{ columnLabels[column] }} ({{ getTasksForColumn(column).length }})</h3>
+          <button mat-icon-button (click)="onAddTask(column)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        
+        <div class="column-content">
+          <div 
+            *ngFor="let task of getTasksForColumn(column); trackBy: trackByTaskId"
+            class="task-card"
+            cdkDrag
+            [cdkDragData]="task"
+            (click)="onCardClick(task)"
+          >
+            <div class="task-header">
+              <h4>{{ task.title }}</h4>
+              <div class="task-actions">
+                <span class="priority-badge">{{ task.priority }}</span>
+                <button 
+                  mat-icon-button 
+                  class="delete-btn"
+                  (click)="onDeleteTask($event, task)"
+                  matTooltip="Delete task"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <p class="task-description">{{ task.description }}</p>
+            <div class="task-footer">
+              <span class="task-date">{{ task.createdAt | date:'MMM d' }}</span>
+              <span class="task-author">{{ task.createdBy.displayName }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <button 
+    mat-fab 
+    color="primary" 
+    class="fab-add-task"
+    (click)="onAddTask(columns[0])"
+    aria-label="Add new task"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div> 

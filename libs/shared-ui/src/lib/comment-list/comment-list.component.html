@@ -1,0 +1,53 @@
+<div class="comment-list">
+  <h4 class="comment-title">Comments ({{ comments.length }})</h4>
+  
+  <div class="comment-input">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Add a comment...</mat-label>
+      <textarea 
+        matInput 
+        [(ngModel)]="newCommentText"
+        rows="2"
+        placeholder="Type your comment here..."
+      ></textarea>
+      <button 
+        mat-icon-button 
+        matSuffix 
+        (click)="onSubmitComment()"
+        [disabled]="!newCommentText.trim()"
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="comments-container">
+    <div 
+      *ngFor="let comment of comments; trackBy: trackByCommentId"
+      class="comment-item"
+    >
+      <div class="comment-header">
+        <app-user-avatar 
+          [user]="comment.createdBy" 
+          size="small"
+        ></app-user-avatar>
+        <div class="comment-meta">
+          <span class="comment-author">{{ comment.createdBy.displayName }}</span>
+          <span class="comment-date">{{ comment.createdAt | date:'MMM d, h:mm a' }}</span>
+        </div>
+      </div>
+      <div class="comment-content">
+        {{ comment.text }}
+      </div>
+    </div>
+
+    <div class="no-comments" *ngIf="comments.length === 0 && !isLoading">
+      <p>No comments yet. Be the first to comment!</p>
+    </div>
+
+    <div class="loading-comments" *ngIf="isLoading">
+      <mat-spinner diameter="20"></mat-spinner>
+      <span>Loading comments...</span>
+    </div>
+  </div>
+</div> 
