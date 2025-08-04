@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "buildCommand": "npx nx build board-ui",
+  "outputDirectory": "dist/apps/board-ui",
+  "installCommand": "npm install",
+  "framework": "angular",
+  "env": {
+    "API_URL": "https://your-api-domain.fly.dev"
+  }
+} 

@@ -95,3 +95,4 @@ cypress/screenshots/
 
 # Nx
 .nx/cache/ 
+.vercel
