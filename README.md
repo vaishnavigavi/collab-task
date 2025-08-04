@@ -2,6 +2,12 @@
 
 A modern, real-time collaborative Kanban board built with Angular 17 and NestJS 10.
 
+## 🚀 Live Demo
+
+**🌐 Frontend:** https://board-ui-sage.vercel.app
+
+**📚 GitHub Repository:** https://github.com/vaishnavigavi/collab-task
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -38,155 +44,143 @@ A modern, real-time collaborative Kanban board built with Angular 17 and NestJS 
 - **Framework:** Angular 17 with standalone components
 - **UI Library:** Angular Material + Tailwind CSS
 - **State Management:** RxJS BehaviorSubject
-- **Real-time:** Socket.IO client
-- **PWA:** Service Worker for offline support
+- **Real-time:** Socket.IO client for WebSocket communication
+- **PWA:** Service Worker for offline functionality
 
 ### Backend (NestJS 10)
-- **Framework:** NestJS 10
-- **Real-time:** Socket.IO server
-- **Validation:** class-validator
+- **Framework:** NestJS 10 with TypeScript
+- **WebSockets:** Socket.IO for real-time communication
+- **Validation:** class-validator for DTO validation
 - **Documentation:** Swagger/OpenAPI
-- **CORS:** Configured for production domains
 
 ### Shared Libraries
 - **shared-models:** TypeScript interfaces and enums
-- **shared-ui:** Reusable UI components
+- **shared-ui:** Reusable Angular components
 
-## 🚀 Deployment
+## ✨ Features
 
-### Prerequisites
-- [Vercel CLI](https://vercel.com/cli) (for frontend)
-- [Fly.io CLI](https://fly.io/docs/hands-on/install-flyctl/) (for backend)
+### 🎯 Core Functionality
+- **Real-time Kanban Board:** Drag & drop tasks between columns
+- **Task Management:** Create, edit, delete, and move tasks
+- **Priority System:** High, Medium, Low priority badges
+- **User Authentication:** Mock Firebase authentication
+- **Responsive Design:** Works on desktop and mobile
 
-### Deploy Backend (Fly.io)
+### 🎨 UI/UX Features
+- **Beautiful Design:** "Calm Productivity" theme
+- **Dark/Light Mode:** Toggle between themes
+- **Smooth Animations:** Angular animations for interactions
+- **Material Design:** Angular Material components
+- **Tailwind CSS:** Utility-first styling
 
-1. **Install Fly.io CLI:**
-   ```bash
-   curl -L https://fly.io/install.sh | sh
-   ```
-
-2. **Login to Fly.io:**
-   ```bash
-   fly auth login
-   ```
-
-3. **Deploy the API:**
-   ```bash
-   npm run deploy:api
-   ```
-
-### Deploy Frontend (Vercel)
-
-1. **Install Vercel CLI:**
-   ```bash
-   npm i -g vercel
-   ```
-
-2. **Login to Vercel:**
-   ```bash
-   vercel login
-   ```
-
-3. **Deploy the UI:**
-   ```bash
-   npm run deploy:ui
-   ```
-
-### Deploy Both (One Command)
-```bash
-npm run deploy
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-**Frontend (.env):**
-```env
-API_URL=https://your-api-domain.fly.dev
-```
-
-**Backend (.env):**
-```env
-PORT=3333
-NODE_ENV=production
-FRONTEND_URL=https://your-frontend-domain.vercel.app
-```
-
-## 🧪 Testing
-
-```bash
-# Unit tests
-npm run test
-
-# E2E tests
-npm run e2e
-
-# Linting
-npm run lint
-```
-
-## 📚 API Documentation
-
-Once deployed, visit:
-- **Development:** http://localhost:3333/api
-- **Production:** https://your-api-domain.fly.dev/api
-
-## 🎯 Features
-
-- ✅ **Real-time Updates:** WebSocket-powered live collaboration
-- ✅ **Drag & Drop:** Smooth Kanban card movement
-- ✅ **Task Management:** Create, edit, delete, and move tasks
-- ✅ **Responsive Design:** Works on desktop and mobile
-- ✅ **PWA Support:** Offline capabilities
-- ✅ **Modern UI:** Material Design + Tailwind CSS
-- ✅ **Type Safety:** Full TypeScript implementation
+### 🔄 Real-time Features
+- **Live Updates:** WebSocket communication
+- **Multi-user:** See changes from other users instantly
+- **Task Comments:** Add comments to tasks
+- **Real-time Sync:** Changes appear across all connected clients
 
 ## 🛠️ Development
 
+### Available Scripts
+
+```bash
+# Development
+npm run serve:board-ui      # Start Angular dev server
+npm run serve:board-api     # Start NestJS dev server
+
+# Building
+npm run build:board-ui      # Build Angular app
+npm run build:board-api     # Build NestJS app
+
+# Testing
+npm run test                # Run all tests
+npm run test:board-ui       # Test Angular app
+npm run test:board-api      # Test NestJS app
+
+# Linting
+npm run lint                # Lint all projects
+npm run format              # Format code with Prettier
+```
+
 ### Project Structure
+
 ```
 collab-task/
 ├── apps/
-│   ├── board-ui/          # Angular frontend
-│   └── board-api/         # NestJS backend
+│   ├── board-ui/          # Angular 17 frontend
+│   └── board-api/         # NestJS 10 backend
 ├── libs/
 │   ├── shared-models/     # TypeScript interfaces
 │   └── shared-ui/         # Reusable components
-└── .github/workflows/     # CI/CD pipelines
+├── .github/workflows/     # CI/CD pipelines
+└── README.md
 ```
 
-### Key Commands
-```bash
-# Development
-npm run serve:board-ui     # Start frontend
-npm run serve:board-api    # Start backend
+## 🚀 Deployment
 
-# Building
-npm run build:board-ui     # Build frontend
-npm run build:board-api    # Build backend
+### Frontend (Vercel)
+- **URL:** https://board-ui-sage.vercel.app
+- **Status:** ✅ Deployed and Live
+- **Framework:** Angular 17
+- **Build:** Automatic on Git push
 
-# Testing
-npm run test               # Run all tests
-npm run e2e               # Run E2E tests
+### Backend (Local Development)
+- **Status:** ⚠️ Needs deployment
+- **Options:** Railway, Render, Heroku (free tiers available)
+- **Note:** Fly.io requires payment information
 
-# Deployment
-npm run deploy:api        # Deploy backend
-npm run deploy:ui         # Deploy frontend
-npm run deploy            # Deploy both
+## 🔧 Environment Variables
+
+### Frontend (.env)
+```env
+API_URL=http://localhost:3333
 ```
 
-## 📈 Roadmap
+### Backend (.env)
+```env
+PORT=3333
+NODE_ENV=development
+```
 
-- [ ] **Database Integration:** PostgreSQL with Prisma
-- [ ] **User Authentication:** Firebase Auth integration
-- [ ] **File Uploads:** Image attachments for tasks
-- [ ] **Advanced Permissions:** Role-based access control
-- [ ] **Analytics Dashboard:** Task completion metrics
-- [ ] **Mobile App:** React Native companion app
-- [ ] **Real-time Comments:** Inline task discussions
-- [ ] **Templates:** Pre-built board templates
-- [ ] **Integrations:** Slack, GitHub, Jira webhooks
+## 📊 API Endpoints
+
+### REST API
+- `GET /tasks` - Get all tasks
+- `POST /tasks` - Create new task
+- `PATCH /tasks/:id` - Update task
+- `PATCH /tasks/:id/column` - Move task to column
+- `DELETE /tasks/:id` - Delete task
+- `POST /tasks/:id/comments` - Add comment
+
+### WebSocket Events
+- `taskCreated` - New task created
+- `taskMoved` - Task moved between columns
+- `commentAdded` - Comment added to task
+
+## 🧪 Testing
+
+### Unit Tests
+- **Frontend:** Jest + Angular Testing Utilities
+- **Backend:** Jest + NestJS Testing Utilities
+
+### E2E Tests
+- **Framework:** Cypress
+- **Status:** Stubbed for demo
+
+## 🎯 Roadmap
+
+### Phase 1 (Current)
+- ✅ Real-time Kanban board
+- ✅ Task management
+- ✅ User authentication
+- ✅ Responsive design
+
+### Phase 2 (Future)
+- 🔄 Database integration (PostgreSQL)
+- 🔄 User roles and permissions
+- 🔄 Advanced task features
+- 🔄 Team collaboration
+- 🔄 Analytics dashboard
 
 ## 🤝 Contributing
 
@@ -198,7 +192,14 @@ npm run deploy            # Deploy both
 
 ## 📄 License
 
-MIT License - see LICENSE file for details.
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgments
+
+- **Angular Team** for the amazing framework
+- **NestJS Team** for the robust backend framework
+- **Vercel** for hosting the frontend
+- **Tailwind CSS** for the utility-first CSS framework
 
 ---
 
