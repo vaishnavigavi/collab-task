@@ -8,5 +8,5 @@ export const environment = {
     messagingSenderId: '1234567890',
     appId: '1:1234567890:web:abcdef123456'
   },
-  apiUrl: process.env['API_URL'] || 'https://web-production-b6c94.up.railway.app'
+  apiUrl: 'https://web-production-b6c94.up.railway.app'
 }; 
